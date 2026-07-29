@@ -27,6 +27,7 @@ export default function SplashIntro() {
     const moveBrand = () => {
       const sourceRect = brand.getBoundingClientRect();
       const targetRect = target.getBoundingClientRect();
+      const tagline = intro.querySelector<HTMLElement>("p");
       const targetScale = targetRect.width / sourceRect.width;
       const deltaX =
         targetRect.left +
@@ -47,6 +48,18 @@ export default function SplashIntro() {
         {
           duration: 780,
           easing: "cubic-bezier(.22,.75,.2,1)",
+          fill: "forwards",
+        },
+      );
+
+      tagline?.animate(
+        [
+          { opacity: 1, transform: "translateY(0)" },
+          { opacity: 0, transform: "translateY(8px)" },
+        ],
+        {
+          duration: 240,
+          easing: "ease-out",
           fill: "forwards",
         },
       );
@@ -85,4 +98,3 @@ export default function SplashIntro() {
     </div>
   );
 }
-
