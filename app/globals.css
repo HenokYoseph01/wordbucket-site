@@ -147,8 +147,14 @@ h2 { font-size: clamp(42px, 5vw, 66px); line-height: 1; }
 .palette.forest { background:#fbf8ed;color:#315b45;left:180px;top:16px;transform:rotate(5deg) }
 .palette.sepia { background:#fff5df;color:#6b4932;left:65px;top:130px;transform:rotate(-2deg) }
 .palette.plum { background:#fff7fa;color:#65445f;left:270px;top:145px;transform:rotate(7deg) }
-.palette.midnight { background:#111821;color:#eef3fa;left:130px;top:260px;transform:rotate(3deg) }
-.palette.mono { background:#fff;color:#111;left:350px;top:280px;transform:rotate(-5deg) }
+.palette.midnight { background:#193354;color:#eef4ff;left:130px;top:260px;transform:rotate(3deg) }
+.palette.mono {
+  background:linear-gradient(90deg,#fff 0 50%,#111 50% 100%);
+  color:#111;
+  left:350px;
+  top:280px;
+  transform:rotate(-5deg);
+}
 
 .install { padding-block: 120px; }
 .install-card {
