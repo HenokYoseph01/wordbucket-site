@@ -1,3 +1,5 @@
+import SplashIntro from "./splash-intro";
+
 const apkUrl = process.env.NEXT_PUBLIC_APK_URL;
 
 const features = [
@@ -92,8 +94,14 @@ function PhonePreview() {
 export default function Home() {
   return (
     <main>
+      <SplashIntro />
       <nav className="nav shell">
-        <a className="brand" href="#top" aria-label="WordBucket home">
+        <a
+          className="brand"
+          href="#top"
+          aria-label="WordBucket home"
+          data-site-brand
+        >
           <BookMark small />
           <span>WordBucket</span>
         </a>
