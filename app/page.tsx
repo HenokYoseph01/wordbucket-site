@@ -1,4 +1,5 @@
 import SplashIntro from "./splash-intro";
+import ReadingDemo from "./reading-demo";
 
 const apkUrl = process.env.NEXT_PUBLIC_APK_URL;
 
@@ -162,6 +163,7 @@ export default function Home() {
             <i>→</i>
             <div><b>Remember</b><span>review when it matters</span></div>
           </div>
+          <ReadingDemo />
         </div>
       </section>
 
