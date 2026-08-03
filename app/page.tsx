@@ -7,7 +7,7 @@ const features = [
   {
     number: "01",
     title: "Stay inside the story",
-    copy: "Highlight a word in nearly any Android app, tap Bucketify, and see the meaning without losing your place.",
+    copy: "Highlight a word and tap Bucketify. If a reader only offers Copy, the Quick Bucketify tile keeps the same calm flow.",
   },
   {
     number: "02",
@@ -25,7 +25,9 @@ const steps = [
   "Download the latest WordBucket APK.",
   "Allow installation from your browser when Android asks.",
   "Open WordBucket and grant notification permission if you want reminders.",
-  "Highlight a word while reading and choose Bucketify.",
+  "Open Settings → Help → Add Quick Bucketify tile, then place it in your Android Quick Settings.",
+  "Optional: long-press your home screen, open Widgets, and add the WordBucket word card.",
+  "Highlight a word and choose Bucketify—or copy it and tap the Quick Bucketify tile.",
 ];
 
 function BookMark({ small = false }: { small?: boolean }) {
@@ -78,8 +80,8 @@ function PhonePreview() {
           <p>A fortunate discovery made by chance.</p>
         </div>
         <div className="phone-nav">
-          <b>▣<span>Bucket</span></b>
           <b>⌁<span>Progress</span></b>
+          <b>▣<span>Home</span></b>
           <b>◉<span>Settings</span></b>
         </div>
       </div>
@@ -159,7 +161,7 @@ export default function Home() {
           <div className="flow">
             <div><b>Highlight</b><span>a word while reading</span></div>
             <i>→</i>
-            <div><b>Bucketify</b><span>see meaning instantly</span></div>
+            <div><b>Bucketify</b><span>directly or from Quick Settings</span></div>
             <i>→</i>
             <div><b>Remember</b><span>review when it matters</span></div>
           </div>
@@ -196,7 +198,8 @@ export default function Home() {
             <h2>Paper palettes for every kind of reader.</h2>
             <p>
               Classic Ink, Forest Journal, Sepia Library, Plum Notebook,
-              Midnight Blue, and true Monochrome—each with its own dark mode.
+              Midnight Blue, Monochrome, Rose Petal, and Matcha &amp; Honey—each
+              with its own dark mode and a matching home-screen widget.
             </p>
           </div>
           <div className="palette-stack" aria-label="WordBucket theme palettes">
@@ -206,6 +209,8 @@ export default function Home() {
             <span className="palette plum"><b>Aa</b>Plum Notebook</span>
             <span className="palette midnight"><b>Aa</b>Midnight Blue</span>
             <span className="palette mono"><b>Aa</b>Monochrome</span>
+            <span className="palette rose"><b>Aa</b>Rose Petal</span>
+            <span className="palette matcha"><b>Aa</b>Matcha &amp; Honey</span>
           </div>
         </div>
       </section>

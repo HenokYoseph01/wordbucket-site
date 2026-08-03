@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type DemoStep = "selected" | "more" | "defined";
+type DemoStep = "selected" | "more" | "quick" | "defined";
 
 export default function ReadingDemo() {
   const [step, setStep] = useState<DemoStep>("selected");
@@ -32,9 +32,11 @@ export default function ReadingDemo() {
           thread before the evening settled in.
         </p>
 
-        {step !== "defined" && (
+        {step !== "defined" && step !== "quick" && (
           <div className="selection-menu" aria-label="Android text actions">
-            <span>Copy</span>
+            <button type="button" onClick={() => setStep("quick")}>
+              Copy
+            </button>
             <span>Share</span>
             {step === "selected" ? (
               <button type="button" onClick={() => setStep("more")}>
@@ -52,6 +54,20 @@ export default function ReadingDemo() {
           </div>
         )}
 
+        {step === "quick" && (
+          <div className="quick-settings" role="dialog" aria-label="Android Quick Settings example">
+            <div className="quick-settings-head">
+              <span>Word copied</span>
+              <small>Quick Settings</small>
+            </div>
+            <button type="button" onClick={() => setStep("defined")}>
+              <i>⌄</i>
+              <strong>Bucketify</strong>
+              <small>Tap to define “luminous”</small>
+            </button>
+          </div>
+        )}
+
         {step === "defined" && (
           <div className="demo-definition" role="status">
             <span>BUCKETIFIED</span>
@@ -66,10 +82,11 @@ export default function ReadingDemo() {
       </div>
 
       <p className="demo-tip">
-        If Bucketify is not visible in Android&apos;s first action row, tap{" "}
-        <strong>More</strong>, then choose <strong>Bucketify</strong>.
+        Try either path: tap <strong>More → Bucketify</strong>, or tap{" "}
+        <strong>Copy → Quick Bucketify</strong> for apps that hide custom text
+        actions. Add the tile by pulling the shade down fully, tapping Edit,
+        and dragging Bucketify into your active tiles.
       </p>
     </div>
   );
 }
-
