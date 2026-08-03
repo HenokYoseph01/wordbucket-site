@@ -25,7 +25,7 @@ const steps = [
   "Download the latest WordBucket APK.",
   "Allow installation from your browser when Android asks.",
   "Open WordBucket and grant notification permission if you want reminders.",
-  "Open Settings → Help → Add Quick Bucketify tile, then place it in your Android Quick Settings.",
+  "Pull down your notification shade fully, tap Edit, then find Bucketify and drag it into your active Quick Settings tiles.",
   "Optional: long-press your home screen, open Widgets, and add the WordBucket word card.",
   "Highlight a word and choose Bucketify—or copy it and tap the Quick Bucketify tile.",
 ];
