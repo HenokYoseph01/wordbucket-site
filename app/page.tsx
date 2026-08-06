@@ -37,9 +37,9 @@ function BookMark({ small = false }: { small?: boolean }) {
   return (
     <span className={small ? "brand-mark small" : "brand-mark"}>
       <svg viewBox="0 0 108 108" aria-hidden="true">
-        <path fill="#fffbf3" d="M27 35 50 40v37l-23-7Z" />
-        <path fill="#fffbf3" d="m58 40 23-5v35l-23 7Z" />
-        <path fill="#f4c95d" d="M52 39h4v41h-4Z" />
+        <path className="logo-page" d="M27 35 50 40v37l-23-7Z" />
+        <path className="logo-page" d="m58 40 23-5v35l-23 7Z" />
+        <path className="logo-ribbon" d="M52 39h4v41h-4Z" />
       </svg>
     </span>
   );
