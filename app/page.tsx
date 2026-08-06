@@ -1,5 +1,6 @@
 import SplashIntro from "./splash-intro";
 import ReadingDemo from "./reading-demo";
+import ThemePalettePreview from "./theme-palette-preview";
 
 const apkUrl =
   process.env.NEXT_PUBLIC_APK_URL ??
@@ -204,16 +205,7 @@ export default function Home() {
               with its own dark mode and a matching home-screen widget.
             </p>
           </div>
-          <div className="palette-stack" aria-label="WordBucket theme palettes">
-            <span className="palette classic"><b>Aa</b>Classic Ink</span>
-            <span className="palette forest"><b>Aa</b>Forest Journal</span>
-            <span className="palette sepia"><b>Aa</b>Sepia Library</span>
-            <span className="palette plum"><b>Aa</b>Plum Notebook</span>
-            <span className="palette midnight"><b>Aa</b>Midnight Blue</span>
-            <span className="palette mono"><b>Aa</b>Monochrome</span>
-            <span className="palette rose"><b>Aa</b>Rose Petal</span>
-            <span className="palette matcha"><b>Aa</b>Matcha &amp; Honey</span>
-          </div>
+          <ThemePalettePreview />
         </div>
       </section>
 
