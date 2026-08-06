@@ -1,6 +1,6 @@
 "use client";
 
-import { FocusEvent, useState } from "react";
+import { FocusEvent, useEffect, useState } from "react";
 
 const palettes = [
   { id: "classic", name: "Classic Ink" },
@@ -14,18 +14,48 @@ const palettes = [
 ] as const;
 
 type PaletteId = (typeof palettes)[number]["id"];
+const storageKey = "wordbucket-site-theme";
 
 export default function ThemePalettePreview() {
-  const [activeName, setActiveName] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<PaletteId | null>(null);
+  const [previewName, setPreviewName] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(storageKey) as PaletteId | null;
+      const palette = palettes.find((item) => item.id === stored);
+      if (palette) {
+        setSelectedId(palette.id);
+        document.documentElement.dataset.previewTheme = palette.id;
+      }
+    } catch (_) {
+      // The temporary hover preview still works when storage is unavailable.
+    }
+  }, []);
 
   function preview(id: PaletteId, name: string) {
     document.documentElement.dataset.previewTheme = id;
-    setActiveName(name);
+    setPreviewName(name);
   }
 
   function restore() {
-    delete document.documentElement.dataset.previewTheme;
-    setActiveName(null);
+    if (selectedId) {
+      document.documentElement.dataset.previewTheme = selectedId;
+    } else {
+      delete document.documentElement.dataset.previewTheme;
+    }
+    setPreviewName(null);
+  }
+
+  function select(id: PaletteId, name: string) {
+    try {
+      window.localStorage.setItem(storageKey, id);
+    } catch (_) {
+      // Apply the choice for this visit even if the browser blocks storage.
+    }
+    document.documentElement.dataset.previewTheme = id;
+    setSelectedId(id);
+    setPreviewName(name);
   }
 
   function handleBlur(event: FocusEvent<HTMLDivElement>) {
@@ -44,13 +74,14 @@ export default function ThemePalettePreview() {
       >
         {palettes.map((palette) => (
           <button
-            className={`palette ${palette.id}`}
+            className={`palette ${palette.id}${selectedId === palette.id ? " selected" : ""}`}
             key={palette.id}
             type="button"
             onMouseEnter={() => preview(palette.id, palette.name)}
             onFocus={() => preview(palette.id, palette.name)}
-            onClick={() => preview(palette.id, palette.name)}
-            aria-label={`Preview ${palette.name} across the page`}
+            onClick={() => select(palette.id, palette.name)}
+            aria-label={`Preview and select ${palette.name} across the page`}
+            aria-pressed={selectedId === palette.id}
           >
             <b>Aa</b>
             {palette.name}
@@ -58,7 +89,13 @@ export default function ThemePalettePreview() {
         ))}
       </div>
       <p className="palette-preview-status" aria-live="polite">
-        {activeName ? `Previewing ${activeName}` : "Hover a palette to preview it"}
+        {previewName && palettes.find((item) => item.name === previewName)?.id === selectedId
+          ? `${previewName} selected — saved for your next visit`
+          : previewName
+            ? `Previewing ${previewName} — click or tap to keep it`
+            : selectedId
+              ? `${palettes.find((item) => item.id === selectedId)?.name} selected — hover to try another`
+              : "Hover to preview · Click or tap to keep a palette"}
       </p>
     </div>
   );

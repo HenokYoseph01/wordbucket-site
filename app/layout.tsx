@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const themeInitScript = `
+try {
+  var theme = localStorage.getItem("wordbucket-site-theme");
+  var themes = ["classic", "forest", "sepia", "plum", "midnight", "mono", "rose", "matcha"];
+  if (themes.includes(theme)) document.documentElement.dataset.previewTheme = theme;
+} catch (_) {}
+`;
+
 export const metadata: Metadata = {
   title: "WordBucket — Read without breaking your flow",
   description:
@@ -11,7 +19,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body suppressHydrationWarning>{children}</body>
     </html>
   );

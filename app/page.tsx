@@ -204,6 +204,11 @@ export default function Home() {
               Midnight Blue, Monochrome, Rose Petal, and Matcha &amp; Honey—each
               with its own dark mode and a matching home-screen widget.
             </p>
+            <p className="theme-interaction-copy">
+              <strong>Try the palettes here.</strong> Hover to preview one
+              across the page, then click or tap to keep it. We&apos;ll remember
+              your choice when you return.
+            </p>
           </div>
           <ThemePalettePreview />
         </div>

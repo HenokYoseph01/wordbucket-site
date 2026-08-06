@@ -371,8 +371,10 @@ h2 { font-size: clamp(42px, 5vw, 66px); line-height: 1; }
 
 .theme-showcase { background: var(--paper-deep); padding: 110px 0; overflow: hidden; }
 .theme-inner { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 80px; }
-.theme-inner > div:first-child > p:last-child { color: var(--ink-soft); line-height: 1.7; max-width: 500px; margin-top: 24px; }
-.palette-stack { min-height: 530px; position: relative; }
+.theme-inner > div:first-child > p { color: var(--ink-soft); line-height: 1.7; max-width: 500px; margin-top: 24px; }
+.theme-interaction-copy { padding-left: 16px; border-left: 3px solid var(--gold); }
+.theme-interaction-copy strong { display: block; color: var(--ink); margin-bottom: 3px; }
+.palette-stack { min-height: 565px; position: relative; }
 .palette {
   width: 260px; height: 140px; position: absolute; border: 1px solid rgba(0,0,0,.12);
   border-radius: 24px; padding: 22px; box-shadow: 0 20px 40px rgba(49, 44, 36, .12);
@@ -397,6 +399,18 @@ h2 { font-size: clamp(42px, 5vw, 66px); line-height: 1; }
 }
 .palette:hover b, .palette:focus-visible b { transform: translateY(-2px) scale(1.05); }
 .palette:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.palette.selected::after {
+  content: "✓ Kept";
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(0,0,0,.68);
+  font-size: 9px;
+  letter-spacing: .04em;
+}
 .palette.classic { --palette-angle:-6deg;--palette-hover-angle:-3deg;background:#fffbf3;color:#203a43;left:0;top:0 }
 .palette.forest { --palette-angle:5deg;--palette-hover-angle:2deg;background:#fbf8ed;color:#315b45;left:180px;top:16px }
 .palette.sepia { --palette-angle:-2deg;--palette-hover-angle:1deg;background:#fff5df;color:#6b4932;left:65px;top:130px }
@@ -412,7 +426,7 @@ h2 { font-size: clamp(42px, 5vw, 66px); line-height: 1; }
 }
 .palette.rose { --palette-angle:4deg;--palette-hover-angle:1deg;background:#fff5f8;color:#a75a7a;left:20px;top:385px }
 .palette.matcha { --palette-angle:-4deg;--palette-hover-angle:-1deg;background:#f1e8c7;color:#59612f;left:245px;top:400px }
-.palette-preview-status { margin: 8px 0 0; color: var(--ink-soft); font-size: 12px; text-align: center; transition: color .6s ease; }
+.palette-preview-status { min-height: 20px; margin: 20px 0 0; color: var(--ink-soft); font-size: 12px; text-align: center; transition: color .6s ease; }
 
 .quick-settings {
   width: min(390px, calc(100% - 28px));
