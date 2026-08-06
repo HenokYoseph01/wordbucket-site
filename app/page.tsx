@@ -1,7 +1,9 @@
 import SplashIntro from "./splash-intro";
 import ReadingDemo from "./reading-demo";
 
-const apkUrl = process.env.NEXT_PUBLIC_APK_URL;
+const apkUrl =
+  process.env.NEXT_PUBLIC_APK_URL ??
+  "https://github.com/HenokYoseph01/word-bucket/releases/latest/download/wordbucket.apk";
 
 const features = [
   {
@@ -113,8 +115,8 @@ export default function Home() {
           <a href="#features">Features</a>
           <a href="#install">Install</a>
         </div>
-        <a className="nav-cta" href={apkUrl ?? "#install"}>
-          {apkUrl ? "Download APK" : "Coming soon"}
+        <a className="nav-cta" href={apkUrl}>
+          Download APK
         </a>
       </nav>
 
@@ -135,10 +137,10 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a
-              className={`button primary ${apkUrl ? "" : "pending"}`}
-              href={apkUrl ?? "#install"}
+              className="button primary"
+              href={apkUrl}
             >
-              <span>{apkUrl ? "Download for Android" : "APK coming soon"}</span>
+              <span>Download for Android</span>
               <b>↓</b>
             </a>
             <a className="button text" href="#how">
@@ -224,17 +226,9 @@ export default function Home() {
               WordBucket is distributed directly as an Android APK. No account,
               no store, and no cloud vocabulary profile.
             </p>
-            {apkUrl ? (
-              <a className="button primary" href={apkUrl}>
-                Download latest APK <b>↓</b>
-              </a>
-            ) : (
-              <div className="release-note">
-                <span>Release build in progress</span>
-                The download button will appear here when the first GitHub
-                Release is ready.
-              </div>
-            )}
+            <a className="button primary" href={apkUrl}>
+              Download latest APK <b>↓</b>
+            </a>
           </div>
           <ol>
             {steps.map((step, index) => (

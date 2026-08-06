@@ -19,8 +19,8 @@ npm run typecheck
 npm run build
 ```
 
-## Enable the APK download
+## APK download
 
-Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_APK_URL` to the direct
-download URL for the latest GitHub Release APK. The site intentionally shows
-"APK coming soon" while that variable is unset.
+The site defaults to WordBucket's permanent latest-release APK URL. To override
+it locally, copy `.env.example` to `.env.local` and change
+`NEXT_PUBLIC_APK_URL` to another direct APK URL.
