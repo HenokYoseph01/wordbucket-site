@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   title: "WordBucket — Read without breaking your flow",
   description:
     "Define words from any Android app, save them to your bucket, and remember them with calm spaced repetition.",
+  icons: {
+    icon: [{ url: "/wordbucket-mark.svg", type: "image/svg+xml" }],
+    shortcut: "/wordbucket-mark.svg",
+  },
 };
 
 export default function RootLayout({
