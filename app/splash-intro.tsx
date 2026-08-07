@@ -94,7 +94,7 @@ export default function SplashIntro() {
         </span>
         <span>WordBucket</span>
       </div>
-      <p>Keep worth reading.</p>
+      <p>Keep words worth knowing.</p>
     </div>
   );
 }
