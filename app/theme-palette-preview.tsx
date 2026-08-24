@@ -8,9 +8,15 @@ const palettes = [
   { id: "sepia", name: "Sepia Library" },
   { id: "plum", name: "Plum Notebook" },
   { id: "midnight", name: "Midnight Blue" },
+  { id: "cobalt", name: "Cobalt Glow" },
   { id: "mono", name: "Monochrome" },
   { id: "rose", name: "Rose Petal" },
   { id: "matcha", name: "Matcha & Honey" },
+  { id: "cherry", name: "Cherry Ink" },
+  { id: "hotpink", name: "Hot Pink" },
+  { id: "lilac", name: "Lilac Evening" },
+  { id: "pressed", name: "Pressed Flowers" },
+  { id: "lagoon", name: "Moonlit Lagoon" },
 ] as const;
 
 type PaletteId = (typeof palettes)[number]["id"];

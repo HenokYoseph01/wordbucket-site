@@ -10,17 +10,32 @@ const features = [
   {
     number: "01",
     title: "Stay inside the story",
-    copy: "Highlight a word and tap Bucketify. If a reader only offers Copy, the Quick Bucketify tile keeps the same calm flow.",
+    copy: "Highlight a word and tap Bucketify, use Quick Settings, or keep the floating Reading Companion nearby while you read.",
   },
   {
     number: "02",
     title: "Keep what catches you",
-    copy: "Save useful words into a calm, searchable collection with pronunciation, examples, and definitions.",
+    copy: "Save the meaning you intended—even when a word has several—and keep every definition neatly collapsed until you need it.",
   },
   {
     number: "03",
     title: "Remember naturally",
     copy: "Active recall, spaced reviews, gentle reminders, and a home widget bring words back at the right time.",
+  },
+  {
+    number: "04",
+    title: "Review the right meaning",
+    copy: "Related meanings are introduced together, then reviewed one by one so prompts stay clear and your progress stays useful.",
+  },
+  {
+    number: "05",
+    title: "Keep your bucket safe",
+    copy: "Delete a whole word or one meaning with clear confirmation, using the visible trash action or a familiar swipe.",
+  },
+  {
+    number: "06",
+    title: "Make the page yours",
+    copy: "Choose from 14 paper-inspired palettes, including WordBucket Originals and the Robi Pack, in light or dark mode.",
   },
 ];
 
@@ -28,9 +43,10 @@ const steps = [
   "Download the latest WordBucket APK.",
   "Allow installation from your browser when Android asks.",
   "Open WordBucket and grant notification permission if you want reminders.",
+  "Optional: open Settings → Reading Companion → Start reading. Copy a word and tap the floating book; hold it to open WordBucket.",
   "Pull down your notification shade fully, tap Edit, then find Bucketify and drag it into your active Quick Settings tiles.",
   "Optional: long-press your home screen, open Widgets, and add the WordBucket word card.",
-  "Highlight a word and choose Bucketify—or copy it and tap the Quick Bucketify tile.",
+  "Highlight a word and choose Bucketify—or copy it and use Reading Companion or the Quick Bucketify tile.",
 ];
 
 function BookMark({ small = false }: { small?: boolean }) {
@@ -125,7 +141,7 @@ export default function Home() {
         <div className="hero-copy">
           <div className="eyebrow">
             <span />
-            Made for curious Android readers
+            WordBucket 1.1 · Made for curious Android readers
           </div>
           <h1>
             Meet a word.
@@ -200,9 +216,10 @@ export default function Home() {
             <p className="section-kicker">Make it feel like yours</p>
             <h2>Paper palettes for every kind of reader.</h2>
             <p>
-              Classic Ink, Forest Journal, Sepia Library, Plum Notebook,
-              Midnight Blue, Monochrome, Rose Petal, and Matcha &amp; Honey—each
-              with its own dark mode and a matching home-screen widget.
+              Explore 14 WordBucket Originals and Robi Pack palettes—from
+              Classic Ink and Midnight Blue to Cherry Ink, Hot Pink, Cobalt
+              Glow, and Moonlit Lagoon. Each includes dark mode and a matching
+              home-screen widget.
             </p>
             <p className="theme-interaction-copy">
               <strong>Try the palettes here.</strong> Hover to preview one
@@ -222,6 +239,11 @@ export default function Home() {
             <p>
               WordBucket is distributed directly as an Android APK. No account,
               no store, and no cloud vocabulary profile.
+            </p>
+            <p className="release-note">
+              <span>New in WordBucket 1.1</span>
+              Reading Companion, multiple meanings, clearer reviews, safer
+              deletion, and an expanded palette gallery.
             </p>
             <a className="button primary" href={apkUrl}>
               Download latest APK <b>↓</b>

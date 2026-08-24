@@ -5,7 +5,7 @@ import "./globals.css";
 const themeInitScript = `
 try {
   var theme = localStorage.getItem("wordbucket-site-theme");
-  var themes = ["classic", "forest", "sepia", "plum", "midnight", "mono", "rose", "matcha"];
+  var themes = ["classic", "forest", "sepia", "plum", "midnight", "cobalt", "mono", "rose", "matcha", "cherry", "hotpink", "lilac", "pressed", "lagoon"];
   if (themes.includes(theme)) document.documentElement.dataset.previewTheme = theme;
 } catch (_) {}
 `;

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type DemoStep = "selected" | "more" | "quick" | "defined";
+type DemoStep = "selected" | "more" | "capture" | "defined";
 
 export default function ReadingDemo() {
   const [step, setStep] = useState<DemoStep>("selected");
@@ -32,9 +32,9 @@ export default function ReadingDemo() {
           thread before the evening settled in.
         </p>
 
-        {step !== "defined" && step !== "quick" && (
+        {step !== "defined" && step !== "capture" && (
           <div className="selection-menu" aria-label="Android text actions">
-            <button type="button" onClick={() => setStep("quick")}>
+            <button type="button" onClick={() => setStep("capture")}>
               Copy
             </button>
             <span>Share</span>
@@ -54,17 +54,22 @@ export default function ReadingDemo() {
           </div>
         )}
 
-        {step === "quick" && (
-          <div className="quick-settings" role="dialog" aria-label="Android Quick Settings example">
-            <div className="quick-settings-head">
-              <span>Word copied</span>
-              <small>Quick Settings</small>
+        {step === "capture" && (
+          <div className="capture-choices" role="dialog" aria-label="WordBucket capture choices">
+            <span>WORD COPIED · CHOOSE A SHORTCUT</span>
+            <div>
+              <button type="button" onClick={() => setStep("defined")}>
+                <i>◫</i>
+                <strong>Reading Companion</strong>
+                <small>Tap the floating book</small>
+              </button>
+              <button type="button" onClick={() => setStep("defined")}>
+                <i>⌄</i>
+                <strong>Quick Bucketify</strong>
+                <small>Tap your Quick Settings tile</small>
+              </button>
             </div>
-            <button type="button" onClick={() => setStep("defined")}>
-              <i>⌄</i>
-              <strong>Bucketify</strong>
-              <small>Tap to define “luminous”</small>
-            </button>
+            <small className="companion-hint">Hold the floating book anytime to open WordBucket.</small>
           </div>
         )}
 
@@ -83,9 +88,9 @@ export default function ReadingDemo() {
 
       <p className="demo-tip">
         Try either path: tap <strong>More → Bucketify</strong>, or tap{" "}
-        <strong>Copy → Quick Bucketify</strong> for apps that hide custom text
-        actions. Add the tile by pulling the shade down fully, tapping Edit,
-        and dragging Bucketify into your active tiles.
+        <strong>Copy → Reading Companion</strong> or <strong>Quick Bucketify</strong>
+        {" "}for apps that hide custom text actions. Reading Companion stays as a
+        small floating book; Quick Bucketify lives in your Android tiles.
       </p>
     </div>
   );
