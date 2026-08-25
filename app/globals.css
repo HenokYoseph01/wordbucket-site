@@ -232,7 +232,8 @@ h2 { font-size: clamp(42px, 5vw, 66px); line-height: 1; }
   font-size: 24px;
   font-weight: 500;
 }
-.demo-heading > button {
+.demo-controls { display:flex; align-items:center; gap:12px; }
+.demo-heading .demo-reset {
   border: 0;
   padding: 6px 0;
   color: rgba(255,255,255,.55);
@@ -241,7 +242,27 @@ h2 { font-size: clamp(42px, 5vw, 66px); line-height: 1; }
   font-size: 12px;
   cursor: pointer;
 }
-.demo-heading > button:hover { color: var(--paper); }
+.demo-heading .demo-reset:hover { color: var(--paper); }
+.companion-toggle {
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  padding: 7px 11px 7px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.72);
+  background: rgba(255,255,255,.07);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color .25s ease, background .25s ease, border-color .25s ease;
+}
+.companion-toggle > span { width:28px; height:17px; padding:2px; display:block; border-radius:99px; background:rgba(255,255,255,.22); transition:background .25s ease; }
+.companion-toggle i { width:13px; height:13px; display:block; border-radius:50%; background:#fff; transform:translateX(0); transition:transform .3s cubic-bezier(.22,.75,.2,1); }
+.companion-toggle[aria-checked="true"] { color:var(--ink); border-color:var(--gold); background:var(--gold); }
+.companion-toggle[aria-checked="true"] > span { background:var(--ink); }
+.companion-toggle[aria-checked="true"] i { transform:translateX(11px); }
 .demo-paper {
   min-height: 250px;
   position: relative;
@@ -354,6 +375,56 @@ h2 { font-size: clamp(42px, 5vw, 66px); line-height: 1; }
   line-height: 1.6;
 }
 .demo-tip strong { color: var(--paper); }
+.companion-preview {
+  position: fixed;
+  right: clamp(18px, 4vw, 58px);
+  bottom: clamp(22px, 5vw, 54px);
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: companion-arrive .55s cubic-bezier(.22,.75,.2,1) both;
+}
+.companion-preview-note {
+  max-width: 225px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  color: var(--ink);
+  background: var(--white);
+  box-shadow: 0 14px 35px rgba(8,22,25,.17);
+  font-size: 11px;
+  line-height: 1.35;
+}
+.companion-preview-note strong { color:var(--accent); }
+.companion-preview-note small { display:block; margin-top:3px; color:var(--ink-soft); font-size:8px; }
+.companion-bubble {
+  width: 62px;
+  height: 62px;
+  flex: 0 0 auto;
+  border: 3px solid rgba(255,255,255,.72);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+  background: var(--ink);
+  box-shadow: 0 16px 34px rgba(8,22,25,.3);
+  cursor: pointer;
+  animation: companion-breathe 3.2s ease-in-out infinite;
+}
+.companion-bubble:hover { transform:translateY(-3px) scale(1.04); }
+.companion-bubble:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
+.companion-bubble svg { width:39px; height:39px; }
+.companion-bubble path { fill:currentColor; }
+.companion-bubble .companion-ribbon { fill:var(--gold); }
+@keyframes companion-arrive {
+  from { opacity:0; transform:translateY(18px) scale(.9); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes companion-breathe {
+  0%, 100% { box-shadow:0 16px 34px rgba(8,22,25,.3); }
+  50% { box-shadow:0 18px 40px rgba(8,22,25,.38), 0 0 0 7px rgba(var(--highlight-rgb),.14); }
+}
 @keyframes word-breathe {
   0%, 100% { filter: brightness(1); }
   50% { filter: brightness(1.12); }
@@ -539,6 +610,8 @@ footer { border-top: 1px solid var(--line); padding: 34px 0; }
   .flow i { transform: rotate(90deg); }
   .reading-demo { padding: 18px; }
   .demo-heading { align-items: center; text-align: left; }
+  .demo-heading { align-items:flex-start; flex-direction:column; }
+  .demo-controls { width:100%; justify-content:space-between; }
   .demo-paper { min-height: 310px; padding: 70px 18px 35px; }
   .demo-paper > p { font-size: 24px; }
   .selection-menu { top: 14px; }
@@ -550,6 +623,8 @@ footer { border-top: 1px solid var(--line); padding: 34px 0; }
   .palette { height: 94px; padding: 12px; font-size: 10px; }
   .palette b { font-size: 27px; }
   .capture-choices > div { grid-template-columns:1fr; }
+  .companion-preview { right:14px; bottom:18px; }
+  .companion-preview-note { max-width:180px; }
   .install-card { padding: 30px 22px; gap: 40px; }
   .footer-inner { flex-direction: column; text-align: center; }
 }

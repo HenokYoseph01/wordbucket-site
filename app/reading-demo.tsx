@@ -6,6 +6,16 @@ type DemoStep = "selected" | "more" | "capture" | "defined";
 
 export default function ReadingDemo() {
   const [step, setStep] = useState<DemoStep>("selected");
+  const [companionEnabled, setCompanionEnabled] = useState(false);
+
+  function toggleCompanion() {
+    setCompanionEnabled((enabled) => !enabled);
+    setStep("selected");
+  }
+
+  function bucketifyFromCompanion() {
+    setStep("defined");
+  }
 
   return (
     <div className="reading-demo">
@@ -14,9 +24,21 @@ export default function ReadingDemo() {
           <span>TRY IT HERE</span>
           <strong>Keep reading. Keep your place.</strong>
         </div>
-        <button type="button" onClick={() => setStep("selected")}>
-          Reset
-        </button>
+        <div className="demo-controls">
+          <button
+            className="companion-toggle"
+            type="button"
+            role="switch"
+            aria-checked={companionEnabled}
+            onClick={toggleCompanion}
+          >
+            <span aria-hidden="true"><i /></span>
+            Reading Companion
+          </button>
+          <button className="demo-reset" type="button" onClick={() => setStep("selected")}>
+            Reset
+          </button>
+        </div>
       </div>
 
       <div className="demo-paper">
@@ -92,6 +114,27 @@ export default function ReadingDemo() {
         {" "}for apps that hide custom text actions. Reading Companion stays as a
         small floating book; Quick Bucketify lives in your Android tiles.
       </p>
+
+      {companionEnabled && (
+        <div className="companion-preview" role="group" aria-label="Reading Companion website preview">
+          <span className="companion-preview-note">
+            Tap to Bucketify <strong>luminous</strong>
+            <small>In the app, hold the book to open WordBucket.</small>
+          </span>
+          <button
+            className="companion-bubble"
+            type="button"
+            aria-label="Bucketify luminous with Reading Companion"
+            onClick={bucketifyFromCompanion}
+          >
+            <svg viewBox="0 0 108 108" aria-hidden="true">
+              <path d="M27 35 50 40v37l-23-7Z" />
+              <path d="m58 40 23-5v35l-23 7Z" />
+              <path className="companion-ribbon" d="M52 39h4v41h-4Z" />
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
