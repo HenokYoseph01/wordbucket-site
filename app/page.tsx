@@ -49,6 +49,45 @@ const steps = [
   "Highlight a word and choose Bucketify—or copy it and use Reading Companion or the Quick Bucketify tile.",
 ];
 
+const previewWords = [
+  {
+    word: "ephemeral",
+    pronunciation: "/ɪˈfem.ər.əl/",
+    part: "adjective",
+    meanings: ["Lasting for a very short time."],
+  },
+  {
+    word: "serendipity",
+    part: "noun",
+    meanings: ["A fortunate discovery made by chance."],
+  },
+  {
+    word: "pen",
+    part: "noun · 2 meanings",
+    meanings: ["An instrument used for writing.", "A small enclosure for animals."],
+  },
+  {
+    word: "luminous",
+    part: "adjective",
+    meanings: ["Giving off light; bright or shining."],
+  },
+  {
+    word: "sonder",
+    part: "noun",
+    meanings: ["The realization that every stranger has a rich inner life."],
+  },
+  {
+    word: "resilience",
+    part: "noun",
+    meanings: ["The ability to recover after difficulty."],
+  },
+  {
+    word: "bank",
+    part: "noun · 2 meanings",
+    meanings: ["Land beside a river.", "An institution that keeps and lends money."],
+  },
+];
+
 function BookMark({ small = false }: { small?: boolean }) {
   return (
     <span className={small ? "brand-mark small" : "brand-mark"}>
@@ -62,6 +101,8 @@ function BookMark({ small = false }: { small?: boolean }) {
 }
 
 function PhonePreview() {
+  const wordLoop = [...previewWords, ...previewWords];
+
   return (
     <div className="phone-wrap" aria-label="WordBucket app preview">
       <div className="phone-shadow" />
@@ -73,30 +114,33 @@ function PhonePreview() {
             <strong>WordBucket</strong>
             <span>Your reading companion</span>
           </div>
-          <b>12</b>
+          <b>7</b>
         </div>
         <div className="search">⌕ &nbsp; Look up a word</div>
         <div className="streak">
           <span>🔥 &nbsp; 6 day streak</span>
           <strong>28 reviews</strong>
         </div>
-        <div className="word-card">
-          <div className="word-title">
-            <strong>ephemeral</strong>
-            <span>/ɪˈfem.ər.əl/</span>
+        <div className="phone-word-window" aria-label="A scrolling preview of saved words">
+          <div className="phone-word-loop">
+            {wordLoop.map((entry, index) => (
+              <article className="word-card" key={`${entry.word}-${index}`} aria-hidden={index >= previewWords.length}>
+                <div className="word-title">
+                  <strong>{entry.word}</strong>
+                  {entry.pronunciation && <span>{entry.pronunciation}</span>}
+                </div>
+                <em>{entry.part}</em>
+                <div className="phone-meanings">
+                  {entry.meanings.map((meaning, meaningIndex) => (
+                    <p key={meaning}>
+                      {entry.meanings.length > 1 && <b>{meaningIndex + 1}</b>}
+                      {meaning}
+                    </p>
+                  ))}
+                </div>
+              </article>
+            ))}
           </div>
-          <em>adjective</em>
-          <p>Lasting for a very short time.</p>
-          <blockquote>
-            “The evening light was beautiful, but ephemeral.”
-          </blockquote>
-        </div>
-        <div className="word-card secondary">
-          <div className="word-title">
-            <strong>serendipity</strong>
-          </div>
-          <em>noun</em>
-          <p>A fortunate discovery made by chance.</p>
         </div>
         <div className="phone-nav">
           <b>⌁<span>Progress</span></b>
@@ -115,7 +159,7 @@ function PhonePreview() {
 
 export default function Home() {
   return (
-    <main>
+    <main id="top">
       <SplashIntro />
       <nav className="nav shell">
         <a
@@ -137,7 +181,7 @@ export default function Home() {
         </a>
       </nav>
 
-      <section className="hero shell" id="top">
+      <section className="hero shell">
         <div className="hero-copy">
           <div className="eyebrow">
             <span />
@@ -270,6 +314,12 @@ export default function Home() {
           <span>Android · Local-first · Open source</span>
         </div>
       </footer>
+      <a className="back-to-top" href="#top" aria-label="Return to the top of the page">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 10.8 12 4l8 6.8v8.7a.5.5 0 0 1-.5.5h-5v-6h-5v6h-5a.5.5 0 0 1-.5-.5Z" />
+        </svg>
+        <span></span>
+      </a>
     </main>
   );
 }
