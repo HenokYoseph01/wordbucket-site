@@ -2,9 +2,13 @@ import SplashIntro from "./splash-intro";
 import ReadingDemo from "./reading-demo";
 import ThemePalettePreview from "./theme-palette-preview";
 
+const releaseApkUrl =
+  "https://github.com/HenokYoseph01/word-bucket/releases/download/v1.1.0/wordbucket-1.1.0.apk";
+const configuredApkUrl = process.env.NEXT_PUBLIC_APK_URL;
 const apkUrl =
-  process.env.NEXT_PUBLIC_APK_URL ??
-  "https://github.com/HenokYoseph01/word-bucket/releases/latest/download/wordbucket.apk";
+  configuredApkUrl && !configuredApkUrl.endsWith("/wordbucket.apk")
+    ? configuredApkUrl
+    : releaseApkUrl;
 
 const features = [
   {
